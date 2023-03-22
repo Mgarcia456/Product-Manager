@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// dont' forget to npm i axios react-router-dom
+import "./App.css";
+import axios from 'axios'
+// A view component enables multiple components to display together
+import Main from "./views/Main";
+import NavBar from "./components/NavBar";
+import OneProduct from "./components/OneProduct";
+import UpdateProduct from "./components/UpdateProduct";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <NavBar/>
+                <Routes>
+                    <Route path="/" element={<Main/>}/> 
+                    <Route path="/product/:id" element={<OneProduct/>}/>
+                    <Route path="/product/edit/:id" element={<UpdateProduct/>}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
